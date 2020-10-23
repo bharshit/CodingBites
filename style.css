@@ -1,0 +1,244 @@
+*{ 
+    box-sizing: border-box;
+}
+
+.grid-mainContent{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    gap: 10px 10px;
+    background-color: rgba(37, 53, 29, 0.637);
+    padding: 24px;
+    
+}
+
+.nested{
+    display: grid;
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+    grid-auto-columns: auto;
+    gap: 1em;
+}
+
+.main-items{
+    background: #727272 url(mn.jpg);
+    color: #d3d3dd;
+    border: 1px solid #333333;
+    font-size: 22px;
+    text-align: left;
+    padding: 50px;
+}
+
+.nested > div{
+    border: #333333 1px solid;
+    padding: 1em;
+}
+
+.heading h1{
+    border-style: solid;
+    border-width: 0px 0px 5px 0px;
+    color: rgb(231, 244, 255);
+    border-bottom-color: hsl(355, 91%, 71%);
+}
+
+.heading h2{
+    padding-top: 10px;
+    color: #bff5ff
+}
+ 
+.main-Ad{
+    background-color:  #ffffff;
+    border: 1px solid #333333;
+    padding: 20px;
+}
+
+.bord{
+    padding: 30px;
+    border-style: inset;
+    border-width: 0px 2px 0px 7px;
+    border-left-color: #a6b3ff;
+    border-right-color: gray ;
+    background: rgba(148, 186, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.example pre{
+    overflow: auto;
+    text-align: left;
+    white-space: pre-line;
+    font-size: 19px;
+    
+    
+}
+
+.Output pre{
+    overflow: auto;
+    text-align: left;
+    white-space: pre-line;
+    font-size: 19px;   
+}
+
+.tableDf td{
+    border-spacing: 5px;
+    background: rgba(158, 192, 255, 0.1);
+    color: #d3d3d3;
+    text-align: left;
+    letter-spacing: 2px;
+    vertical-align: top;
+}
+
+.tableDf{
+    font-size: 19px;
+    border-radius: 20px;
+    overflow: auto;
+}
+
+.tableDf td{
+    padding: 25px;
+    border-radius: 5px;
+}
+
+.tableDf th{
+    border-radius: 5px;
+    text-align: center;
+    background-color: #98a4e6;
+    color: white;
+}
+
+/*tablet view*/
+
+@media (max-width: 990px){
+    .grid-mainContent{
+        display: block;
+        grid-template-columns: 100% 100%;
+        background-color: #333333;
+        padding: 20px;
+    }
+
+    .main-items{
+        background: #727272 url(mn.jpg);
+        font-size: 19px;
+        padding: 40px;
+    }
+
+    .main-Ad{
+        display: grid;
+        background-color:  #cecece;
+        border: 1px solid #333333;
+        padding: 15px;
+        grid-template-columns: 49% 49%;
+        margin-top: 5px;
+        margin-bottom: 5px; 
+
+    }
+    .bord{
+        padding: 18px;
+
+    }
+
+    .example pre{
+        font-size: 16px;
+    }
+
+    .Output pre{
+        font-size: 16px;
+    }
+
+    .tableDf{
+        width: auto;
+        font-size: 16px;
+    }
+   
+   
+}
+
+/* view*/
+@media (max-width: 700px)
+{
+    .grid-mainContent{
+        display: block;
+        grid-template-columns: 100% 100%;
+        background-color: #333333;
+        padding: 20px;
+    }
+
+    .main-items{
+        background: #727272 url(mn.jpg);
+        padding: 30px;
+        font-size: small;
+    }
+
+    .main-Ad{
+        background-color:  #cecece;
+        border: 1px solid #333333;
+        padding: 14px;
+        display: block;
+        margin-top: 5px;
+        margin-bottom: 5px;     
+    }
+
+    .bord{
+        padding: 16px;
+    }
+
+    .example pre{
+        font-size: smaller;
+    }
+
+    .Output pre{
+        font-size: smaller;
+    }
+
+    .tableDf{
+        width: auto;
+        font-size: smaller;
+    }   
+}
+
+
+/*ulta view*/
+@media (max-width: 600px)
+{
+    .grid-mainContent{
+        display: block;
+        grid-template-columns: 100% 100%;
+        background-color: #333333;
+        padding: 10px;
+    }
+
+    .main-items{
+        background: #727272 url(mn.jpg);
+        padding: 20px;
+        font-size: small;
+    }
+
+    .main-Ad{
+        background-color:  #cecece;
+        border: 1px solid #333333;
+        padding: 14px;
+        display: block;
+        margin-top: 5px;
+        margin-bottom: 5px;     
+    }
+
+    .bord{
+        padding: 14px;
+    }
+
+    .example pre{
+        font-size: smaller;
+    }
+
+    .Output pre{
+        font-size: smaller;
+    }
+
+    .tableDf{
+        width: auto;
+        font-size: smaller;
+    }   
+
+    .tableDf td{
+        padding: 10px;
+    }
+}

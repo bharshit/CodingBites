@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="Utf-8">
+        <title>Method Overloading & Method Overriding</title>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta property="og:site_name" ng-attr-content="{{ service.siteName }}" content="CodingBites.com">
+        <meta property="og:title" ng-attr-content="{{ service.title }}" content="Method Overloading vs. Method Overriding - CodingBites Java">
+        <meta property="og:url" ng-attr-content="{{ service.canonical }}" content="https://">
+        <meta ng-if="service.type" ng-attr-content="{{ service.type }}" property="og:type" content="article">
+
+        <link rel="dns-prefetch" href="//www.googletagservices.com">
+        <link rel="dns-prefetch" href="//www.google-maps.com">
+        <link rel="dns-prefetch" href="//www.facebook.com">
+        <link rel="dns-prefetch" href="//www.instagram.com">
+
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="inde.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+    <!--header-->
+
+        <div class="header">
+          <a class="logo" href="#default"><span>Coding</span>Bites</a>
+          <div class="header-right">
+            <a class="active" href="#home">Home</a>
+            <a href="#conUs">Contact</a>
+            <a href="#abUs">About</a>
+          </div>
+        </div>
+        
+        
+         <!--content-->
+         
+        
+         
+             <div class="grid-mainContent">
+             <!--Method Overloading-->
+                 <div class="main-items 1">
+                     <div class="heading"><h1>What Is Method Overloading?</h1></div>
+                     <div class="content matter">
+                         <p> 
+                             When two or more methods within the same class are declared with the same name, but different parameters they are said to be <strong>Overloaded.</strong><br>
+                             When an overloaded method is invoked, java uses its <em>return type</em> or <em>number of arguments</em> to determine which version to call. While overloaded methods may have different return types, the return type alone is insufficient to distinguish two version of a method.
+                             When java encounters a call to an overloaded method, it simply executes the version of the method whose parameters match the arguments used in the call. However, this match need not always be exact. In some cases Java's automatic type conversions can play a role in overloading resolution.
+                             Let's take an example to better understand the concept.
+                         </p>
+                     </div>
+                     <div class="heading"><h2>Example:</h2></div>
+                     <div class="bord example">
+                         <pre>
+         class A
+         {
+             void specify(){
+             System.out.println("No parameter");
+             }
+                     
+             //Overload specify for two integer parameters.
+             void specify(int a, int b){
+             System.out.println("a and b: " + a + " " + b);
+             }
+                         
+             //Overload specify for a double parameter.
+             void specify(double a){
+             System.out.println("Inside spsecify(double) a: " + a);
+             }
+         }
+                         
+         class B{
+             public static void main(String args[])
+                 {
+                     A ab = new A();
+                     int i = 11;
+                         
+                     ab.specify();
+                     ab.specify(10,20);
+                         
+                     ab.specify(i); //this will invoke test(double)
+                     ab.specify(119.72);
+                 }
+             }
+                     </pre></div>
+                     <div class="heading"><h2>Console Output:</h2></div>
+                     <div class="bord Output"><pre>
+         No parameter
+         a and b: 10 20
+         Inside spsecify(double) a: 11.0
+         Inside spsecify(double) a: 119.72 
+                     </pre></div>
+                     <div class="content matter">
+                         <p>
+                             In the program, class <strong>A</strong> does not define <strong>specify(int)</strong>. Therefore when<strong> specify()</strong> is called with an integer argument inside <strong>A</strong>, no matching method is found.
+                             However, java automatically converts integer into a <strong>double</strong> and this coversion resolves the call. Therefore, after <strong>specify(int)</strong> is not found, java elevates <strong>i</strong> to <strong>double</strong> and then calls <strong>specify(double)</strong>.
+                             Of course, if <strong>specify(int)</strong> had been defined, it would have been called instead. Thus, automatic conversion is only applied if no match is found.
+                             <br>
+                             Hence, method overloading supports polymorphism bacause it is one way java implements the <q>one interface, multiple methods</q> paradigm.
+                         </p>
+                     </div>
+                 </div>
+         
+                 <!--Ad Section-->
+                 <div class="main-Ad nested">
+                         <div>Ad-1</div>
+                         <div>Ad-2</div>
+                         <div>Ad-3</div>
+                         <div>Ad-4</div>
+                 </div>
+         
+         
+         <!--Method Overriding-->
+                 <div class="main-items 2">
+                     <div class="heading"><h1>What Is Method Overriding?</h1></div>
+                     <div class="content matter">
+                         <p>
+                             In class heirarchy, when a method in a subclass has the same name and type signatures as a method in its superclass, it is said to be <Strong>Overriden</Strong>.
+                             When an overidden method is called from within a subclass, it will always refer to the version of method defined by the subclass. The version of method defined by superclass will be hidden.
+                             Let's understand this with an example: 
+                         </p>
+                     </div>
+                     <div class="heading"><h2>Example:</h2></div>
+                     <div class="bord example"><pre>
+         class A{
+             int i;
+             int j;
+         
+                 A(int a, int b)
+                 {
+                     i = a;
+                     j = b;
+                 } 
+                     
+             //Display i and j
+                     
+             void show(){
+                 System.out.println("i and j: " + i + " " + j);
+             }
+                     
+         class B extends A {
+             int k;
+                     
+             B(int a, int b, int c){
+                 super(a,b);
+                 k = c;
+             }
+                     
+             //Display k - this overrides show() in A 
+             @Override
+             void show(){
+             System.out.println("k: " + k);
+             }
+         }
+                     
+         class Overriding{
+             public static void main(String[]args){
+                 B ob = new B(2,3,4);
+                     
+                 ob.show(); // this calls show in B
+             }
+         }</pre></div>
+                 
+                     <div class="heading"><h2>Console Output:</h2></div>
+                     <div class="bord Output"><pre>k: 4</pre></div>
+                     <div class="content matter">
+                         <p>
+                             In the above program when <strong>show()</strong> is invoked on an object of type <strong>B</strong>, the version of <strong>show()</strong> within <strong>B</strong> is used. That is, the version
+                              of <strong>show()</strong> inside <strong>B</strong> overrides the version declared in <strong>A</strong>.
+                             <br>
+                             If you wish to access the superclass version of an overriden function, you can do it by using keyword <strong>super</strong>. For example in the above program, the superclass version of <strong>show()</strong> is 
+                             invoked within the subclass' version. this allow all instance variable to be displayed. 
+                             </p>
+                     </div>
+                     <div class="heading"><h2>Modification in class B:</h2></div>
+                     <div class="bord example"><pre>
+         class B extends A{
+             int k;
+                        
+             B(int a, int b, int c)
+             {
+                 super(a,b); //super used to override constructor
+                 k = c;
+             }
+         
+             @Override
+             void show(){
+                 super.show(); // this call's a show()
+                 System.out.println("k: + k");
+             }
+         }</pre></div>
+                     <div class="heading"><h2>Console  Output:</h2></div>
+                     <div class="bord Output"><pre>
+         i and j: 1 2
+         k: 3
+                     </pre></div>
+                     <div class="content matter">
+                         <p>
+                             In a complex programs, where different types of objects are refferd to, different version of an overriden method will be called. To resolve such issue we'll use <em>dynamic method dispatch</em>.
+                             Dynamic method dispatch is the mechanism by which a call to an overrideen method is resolved at run time, this is how java implements run-time polymorphism. It uses the fact:<em>a superclass reference variable can refer to a subclass object.</em>
+                             Let's take a sample program.
+                         </p>
+                     </div>
+                     <div class="heading"><h2>Example:</h2></div>
+                     <div class="bord example"><pre>
+         class A{
+                         
+             void show(){
+                 System.out.println("inside A's show method");
+                 }
+         }
+                         
+         class B extends A {
+                           
+             @Override
+             void show(){
+                 System.out.println("Inside B's show method");
+                 }
+         }
+                         
+         class C extends A {
+                           
+             @Override
+             void show(){
+                 System.out.println("Inside C's show method");
+                 }
+         }
+                         
+         class dynDispatch{
+             public static void main(String[]args){
+                 A a = new A(); //Object of type A
+                 B b = new B(); //Object of type A
+                 C c = new C(); //Object of type A
+                 A r; //Obtain a reference of type A
+                         
+                 r = a; // r refer to an A object
+                 r.show(); //calls A's version of show
+                         
+                 r = b; // r refer to an B object
+                 r.show(); //calls B's version of show
+                         
+                r = c; // r refer to an C object
+                r.show(); //calls C's version of show
+                         
+             }
+         }</pre></div>
+                     <div class="heading"><h2>Console Output:</h2></div>
+                     <div class="bord Output"><pre>
+         inside A's show method
+         Inside B's show method
+         Inside C's show method
+                     </pre></div>    
+                 </div>
+         
+                 
+          <!--Ad Section-->
+                 <div class="main-Ad 2 nested">
+                         <div>Ad-1</div>
+                         <div>Ad-2</div>
+                         <div>Ad-3</div>
+                         <div>Ad-4</div>
+                         <div>Ad-5</div>
+                         <div>Ad-6</div> 
+                     
+                 </div>
+         
+         <!--table-->
+                 <div class="main-items 3">
+                     <div class="heading"><h1>Difference Table</h1></div>
+                         <div class="tableDf">
+                         
+                 
+                         <table>
+                             <caption>.</caption>
+                         
+                             <tr>
+                                     <th id="Sno">S.No.</th>
+                                     <th id="movl">Method Overloading</th>
+                                     <th id="mord">Method Overriding</th>
+                             </tr>
+                             <tr>
+                                 <td>1.</td>
+                                     <td>It ocuurs within the class</td>
+                                     <td>Method overriding occurs in two classes that have IS-A (inheritance) relationship</td>
+                             </tr>
+                             <tr>
+                                 <td>2.</td>
+                                     <td>Method overloading is used to increase the readability of the program.</td>
+                                     <td>Method overriding is used to provide the specific implementation of the method that is already provided by its super class.</td>
+                             </tr>
+                             <tr>
+                                 <td>3.</td>
+                                     <td>Method overloading may or may not require inheritance.</td>
+                                     <td>While method overriding always needs inheritance.</td>
+                             </tr>
+                             <tr>
+                                 <td>4.</td>
+                                     <td>Method overloading is a compile time polymorphism.</td>
+                                     <td>Method overriding is a run time polymorphism.</td>
+                             </tr>
+                             <tr>
+                                 <td>5.</td>
+                                     <td>Method overloading can't be performed by changing return type of the method only.Return type can be same or different in method overloading. But you must have to change the parameter.</td>
+                                     <td>Return type must be same or covariant in method overriding.</td>
+                             </tr>
+                             <tr>
+                                 <td>6.</td>
+                                     <td>In this, methods must have same name and different signature.</td>
+                                     <td>While in this, methods must have same name and same signature.</td>
+                             </tr>
+                         </table>
+                     </div>
+                 
+                 </div>
+         
+         <!--Ad Section-->
+                  <div class="main-Ad 3 nested">
+                          <div>Ad-1</div>
+                          <div>Ad-2</div>
+                          <div>Ad-3</div>
+                          <div>Ad-4</div>    
+                 </div>
+                
+             </div>
+         
+          
+            <!--Footer-->
+            <footer>
+                <div class="container">
+                    <div class="box">
+                        <h2><a id="abUs">About Us</a></h2>
+                        <p> 
+                            CodingBites is an education blog conceived for the purpose of tutorials. More content on programming languages & questions will be uploaded soon, Keep in touch. Thank you!   
+                        </p>
+                        <div class="socials">
+                            <a href="https://fb.me/CodingBites"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/coding.bites/"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <h2>Address</h2>
+                        <div class="address"> 
+                            <a href="https://goo.gl/maps/GCGaCcB2DFKid2nk6"><i class="fas fa-map-marker-alt"></i>
+                                55 Bell Road, Clement Town, Dehradun, Uttrakhand, India
+                            </a>
+
+                            <a href="#mailto:codingBites@xyz"><i class="fas fa-envelope"></i>
+                                xodingZites@-at.xyz
+                            </a>
+                        </div>
+                    </div>
+            
+                    <div class="box">
+                        <h2><a id="conUs">Contact Us</a></h2>
+                        <form action="#" method="POST">
+                            <label for="mail">Email <span>*</span></label>
+                            <input type="email" name="mail" id="mail"required>
+                            <label for="message">Messaage <span>*</span></label>
+                            <textarea name="message" id="message" rows="3" required></textarea>
+                            <div class="btn">
+                                <button type="submit">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            
+                <div class="footer-bottom">
+                <p>&copy;<span> Coding</span>Bites| Designed by HB</p>
+                </div>
+            </footer>
+    </body>
+</html>  
+     
